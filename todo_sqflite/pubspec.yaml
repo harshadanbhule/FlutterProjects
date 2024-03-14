@@ -1,0 +1,27 @@
+name: todo_sqflite
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  intl: ^0.19.0
+  flutter_slidable: ^3.0.1
+  sqflite: ^2.3.2
+  path: ^1.9.0
+  flutter_svg: ^2.0.10+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    [assets/images/Hexagonal Profile Photo2.png,assets/images/Hexagonal Profile Photo4.png,assets/images/Saly-43.png,assets/images/Place Image Here.png,assets/images/astro.svg,assets/images/_0013.png]  
