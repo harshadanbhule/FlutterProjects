@@ -28,3 +28,13 @@ flutter:
     - lib/assets/images/cata/Vector.png
     - lib/assets/images/cata/Vector5.png
 
+  fonts:
+     - family: Poppins
+       fonts:
+         - asset: assets/fonts/Poppins-Black.ttf
+         - asset: assets/fonts/Poppins-SemiBold.ttf
+
+     - family: Darlington
+       fonts:
+         - asset: assets/fonts/DarlingtonDemo-z8xjG.ttf
+

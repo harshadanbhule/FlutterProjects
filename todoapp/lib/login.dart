@@ -3,7 +3,9 @@ import 'package:todoapp/task.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
+
+  get userNameTextEditingController => null;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
     String username = userNameTextEditingController.text;
     String password = passwordTextEditingController.text;
 
-    if (username == 'harshad' && password == 'Satara@11') {
+    if (username == 'abc' && password == '123') {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ToDoApp()),

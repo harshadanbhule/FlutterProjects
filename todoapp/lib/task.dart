@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+
 class ToDoApp extends StatefulWidget {
   const ToDoApp({super.key});
+
   @override
-  State<ToDoApp> createState() => _ToDoAppState();
+  _ToDoAppState createState() => _ToDoAppState();
 }
 
 class _ToDoAppState extends State<ToDoApp> {
   TextEditingController dateController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
   void showBottomSheet(bool doedit, [ToDoModelClass? toDoModelObj]) {
     showModalBottomSheet(
         isScrollControlled: true,
@@ -37,7 +40,7 @@ class _ToDoAppState extends State<ToDoApp> {
                   height: 10,
                 ),
                 Text(
-                  "Create Task",
+                  doedit ? "Edit Task" : "Create Task",
                   style: GoogleFonts.quicksand(
                     fontWeight: FontWeight.w600,
                     fontSize: 22,
@@ -71,8 +74,7 @@ class _ToDoAppState extends State<ToDoApp> {
                           ),
                         ),
                         border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.purpleAccent),
+                          borderSide: const BorderSide(color: Colors.purpleAccent),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
@@ -102,8 +104,7 @@ class _ToDoAppState extends State<ToDoApp> {
                           ),
                         ),
                         border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.purpleAccent),
+                          borderSide: const BorderSide(color: Colors.purpleAccent),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
@@ -134,8 +135,7 @@ class _ToDoAppState extends State<ToDoApp> {
                           ),
                         ),
                         border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.purpleAccent),
+                          borderSide: const BorderSide(color: Colors.purpleAccent),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
@@ -146,11 +146,12 @@ class _ToDoAppState extends State<ToDoApp> {
                           firstDate: DateTime(2024),
                           lastDate: DateTime(2025),
                         );
-                        String formatedDate =
-                            DateFormat.yMMMd().format(pickeddate!);
-                        setState(() {
-                          dateController.text = formatedDate;
-                        });
+                        if (pickeddate != null) {
+                          String formatedDate = DateFormat.yMMMd().format(pickeddate);
+                          setState(() {
+                            dateController.text = formatedDate;
+                          });
+                        }
                       },
                     ),
                   ],
@@ -161,8 +162,7 @@ class _ToDoAppState extends State<ToDoApp> {
                 Container(
                   height: 50,
                   width: 300,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -205,21 +205,21 @@ class _ToDoAppState extends State<ToDoApp> {
       title: "Prepare for Exam",
       description:
           "Study for the upcoming exam in AJP. Review notes, textbooks, and practice problems.",
-      date: "March 6,2024",
+      date: "March 6, 2024",
     ),
     ToDoModelClass(
       title: "Submit Assignment",
-      description:
-          "Complete and submit the PDC assignment before the deadline.",
-      date: "March 8,2024",
+      description: "Complete and submit the PDC assignment before the deadline.",
+      date: "March 8, 2024",
     ),
     ToDoModelClass(
       title: "Attend Club Meeting",
       description:
           "Participate in the E-Cell meeting to discuss upcoming events and activities.",
-      date: "March 15,2024",
+      date: "March 15, 2024",
     ),
   ];
+
   void submit(bool doedit, [ToDoModelClass? toDoModelObj]) {
     if (titleController.text.trim().isNotEmpty &&
         descriptionController.text.trim().isNotEmpty &&
@@ -271,141 +271,177 @@ class _ToDoAppState extends State<ToDoApp> {
     dateController.dispose();
     descriptionController.dispose();
   }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange,
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(2, 167, 177, 1),
-        centerTitle: true,
-        title: Text(
-          "TO-DO APP",
-          style: GoogleFonts.quicksand(
-            fontWeight: FontWeight.w700,
-            fontSize: 25,
-          ),
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: todoList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 16,
+      body: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+                color: Colors.orange,
+                borderRadius: BorderRadius.only(bottomRight: Radius.circular(50))),
+            child: const Column(
+              children: [
+                SizedBox(height: 50),
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 30),
+                  title: Text(
+                    "Hi Harshad!",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    "Good Morning",
+                    style: TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w200,
+                        color: Colors.white54),
+                  ),
+                  trailing: CircleAvatar(
+                    backgroundImage: AssetImage(
+                        "assets/images/zahra-amiri-JBcxO430PKM-unsplash.jpg"),
+                    radius: 30,
+                  ),
+                ),
+                SizedBox(height: 30)
+              ],
             ),
+          ),
+          Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                color: listOfColors[index % listOfColors.length],
-                boxShadow: const [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                    blurRadius: 10,
-                  )
-                ],
-                borderRadius: BorderRadius.circular(10),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(130)),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 70,
-                          width: 70,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            "assets/images/Group 42.png",
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                todoList[index].title,
-                                style: GoogleFonts.quicksand(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  color: const Color.fromRGBO(0, 0, 0, 1),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                todoList[index].description,
-                                style: GoogleFonts.quicksand(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: const Color.fromRGBO(84, 84, 84, 1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+              child: ListView.builder(
+                itemCount: todoList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 16,
                     ),
-                    const SizedBox(
-                      height: 14.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            todoList[index].date,
-                            style: GoogleFonts.quicksand(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromRGBO(132, 132, 132, 1),
-                            ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  editTask(todoList[index]);
-                                },
-                                child: const Icon(
-                                  Icons.edit_outlined,
-                                  color: Color.fromRGBO(0, 139, 148, 1),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  removeTasks(todoList[index]);
-                                },
-                                child: const Icon(
-                                  Icons.delete_outline,
-                                  color: Color.fromRGBO(0, 139, 148, 1),
-                                ),
-                              )
-                            ],
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: listOfColors[index % listOfColors.length],
+                        boxShadow: const [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            color: Color.fromRGBO(0, 0, 0, 0.1),
+                            blurRadius: 10,
+                          )
                         ],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  height: 70,
+                                  width: 70,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    "assets/images/Group 42.png",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        todoList[index].title,
+                                        style: GoogleFonts.quicksand(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                          color: const Color.fromRGBO(0, 0, 0, 1),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        todoList[index].description,
+                                        style: GoogleFonts.quicksand(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: const Color.fromRGBO(84, 84, 84, 1),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 14.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    todoList[index].date,
+                                    style: GoogleFonts.quicksand(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: const Color.fromRGBO(132, 132, 132, 1),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          editTask(todoList[index]);
+                                        },
+                                        child: const Icon(
+                                          Icons.edit_outlined,
+                                          color: Color.fromRGBO(0, 139, 148, 1),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          removeTasks(todoList[index]);
+                                        },
+                                        child: const Icon(
+                                          Icons.delete_outline,
+                                          color: Color.fromRGBO(0, 139, 148, 1),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
-          );
-        },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromRGBO(0, 139, 148, 1),
@@ -414,7 +450,6 @@ class _ToDoAppState extends State<ToDoApp> {
           showBottomSheet(false);
         },
         child: const Icon(
-          size: 50,
           Icons.add,
           color: Colors.white,
         ),
@@ -424,9 +459,10 @@ class _ToDoAppState extends State<ToDoApp> {
 }
 
 class ToDoModelClass {
-  String title;
-  String description;
-  String date;
+  late String title;
+  late String description;
+  late String date;
+
   ToDoModelClass({
     required this.title,
     required this.description,
