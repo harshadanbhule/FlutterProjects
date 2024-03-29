@@ -1,0 +1,38 @@
+name: rentodemo
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.6
+  sqflite: ^2.3.2
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/pngegg(1) 2.svg
+    - assets/images/Rectangle 51.svg
+    - assets/images/pngegg(1) 2.png
+    - assets/images/Rectangle 51.png
+    - assets/images/enter/enter.svg
+    - assets/images/enter/enter.png
+    - assets/images/login/apple.svg
+
+  fonts:
+    - family: GameOfThrone
+      fonts:
+        - asset: assets/fonts/Game of Thrones.ttf
+
