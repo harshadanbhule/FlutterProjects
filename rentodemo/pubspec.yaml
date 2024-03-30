@@ -30,6 +30,16 @@ flutter:
     - assets/images/enter/enter.svg
     - assets/images/enter/enter.png
     - assets/images/login/apple.svg
+    - assets/images/login/google.svg
+    - assets/images/login/facebook.svg
+    - assets/images/product/Cycle/combat.png
+    - assets/images/product/Cycle/santa.png
+    - assets/images/product/Cycle/viper.png
+    - assets/images/product/accecories/helmet.svg
+    - assets/images/product/accecories/helmet.png
+    - assets/images/product/accecories/jersey.png
+    - assets/images/product/accecories/gloves.png
+    - assets/images/product/accecories/shoes.png
 
   fonts:
     - family: GameOfThrone

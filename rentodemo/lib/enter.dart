@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentodemo/login.dart';
+import 'package:rentodemo/register.dart';
 
 class Enter extends StatefulWidget {
   const Enter({super.key});
@@ -91,7 +92,7 @@ class _EnterState extends State<Enter> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Enter()),
+                      MaterialPageRoute(builder: (context) => const Register()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
