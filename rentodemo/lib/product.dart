@@ -348,6 +348,7 @@ class _ProductState extends State<Product> {
                                     width: 105,
                                     child: ElevatedButton(
   style: ElevatedButton.styleFrom(
+    elevation: 10,
     foregroundColor: const Color.fromRGBO(221, 18, 18, 1),
     backgroundColor: const Color.fromARGB(255, 255, 255, 255),
     shape: RoundedRectangleBorder(
