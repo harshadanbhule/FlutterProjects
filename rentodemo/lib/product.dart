@@ -73,34 +73,43 @@ class _ProductState extends State<Product> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(CupertinoIcons.arrow_left),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(CupertinoIcons.shopping_cart),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(CupertinoIcons.person),
-            ),
-          ),
-        ],
-      ),
+      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+           Container(
+            color: Colors.white,
+            padding: const EdgeInsets.only(left: 20, top: 30, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: const Icon(CupertinoIcons.arrow_left),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(CupertinoIcons.shopping_cart),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(CupertinoIcons.person),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
             child: Text(
