@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rentodemo/cycleDetail.dart';
 
 class Product extends StatefulWidget {
   const Product({super.key});
@@ -15,8 +15,9 @@ class Cycle {
   final String? asset;
   final List<String>? model;
   final int? price;
+  final List<String>? discrption;
 
-  const Cycle({this.asset, this.model, this.price});
+  const Cycle({this.asset, this.model, this.price, this.discrption});
 }
 
 class Accecories {
@@ -30,26 +31,32 @@ class Accecories {
 class _ProductState extends State<Product> {
   List cycleList = [
     const Cycle(
-      asset: "assets/images/product/Cycle/combat.png",
-      model: ["Combat"],
-      price: 200,
-    ),
+        asset: "assets/images/product/Cycle/large/Combatlarge.png",
+        model: ["Combat"],
+        price: 200,
+        discrption: [
+          "The cycle is delivered in SemiAssembled condition (85% \nassembled). Customer needs to assemble it before use.\nAttractive sporty frame design for durability and safety.\nSide handle bar ends for safety and protecting the cycle \n       when it falls down, Wide and anti skid pedals for \nbetter and firm grip of the footwear. Pu foam saddle \nwith spring for extra comfort and cushioning. The \nbicycle is best suited for fast daily commutes and faster \nWeekend rides with a sturdy and robust steel frame \nwhich is less prone to damage and easy to maintain in \nthe long run. Antiskid tires with unique grippers for \nslippery riding conditions."
+        ]),
     const Cycle(
-      asset: "assets/images/product/Cycle/santa.png",
-      model: ["Santa"],
-      price: 300,
-    ),
+        asset: "assets/images/product/Cycle/large/santa large.png",
+        model: ["Santa"],
+        price: 300,
+        discrption: [
+          "The bicycle arrives in partially assembled condition (85% \ncomplete). Assembly by the customer is required before \nuse.Appealing athletic frame design for durability and \nsafety.Ends of the handlebar for safety and to shield \nthe bicycle \n       in case of a fall, Broad and anti-slip \npedals for enhanced grip of the footwear. Foam-padded \nsaddle with spring for added comfort and \nsupport. The bike is ideal for swift daily commutes and \nquicker weekend rides with a resilient and strong steel frame \nthat is less susceptible to damage and simple to maintain \nin the long term. Tires with special grip patterns for \nsecure riding in slippery conditions."
+        ]),
     const Cycle(
-      asset: "assets/images/product/Cycle/viper.png",
-      model: ["Viper"],
-      price: 150,
-    ),
+        asset: "assets/images/product/Cycle/large/viperlarge.png",
+        model: ["Viper"],
+        price: 150,
+        discrption: [
+          "Upon delivery, the cycle arrives partially assembled (85% \ncompletion).Assembly is required by the user before \nusage.Boasting a sleek and dynamic frame design, this bike \nensures both durability and safety.Equipped with side \nhandlebar extensions to safeguard against falls, \nalong with wide, anti-slip pedals for enhanced traction.\nThe saddle features foam cushioning and spring support \nfor optimal comfort.Ideal for swift daily commutes and \nadventurous weekend rides, thanks to its sturdy steel frame\n that's resilient and easy to maintain.Tires are engineered\n with specialized grips for reliable traction on \nslippery surfaces."
+        ]),
   ];
 
   List accecoriesList = [
     const Accecories(
       asset: "assets/images/product/accecories/helmet.png",
-      model: ["Black helmet"],
+      model: ["helmet"],
       price: 50,
     ),
     const Accecories(
@@ -59,7 +66,7 @@ class _ProductState extends State<Product> {
     ),
     const Accecories(
       asset: "assets/images/product/accecories/jersey.png",
-      model: ["Black jersey"],
+      model: ["jersey"],
       price: 70,
     ),
     const Accecories(
@@ -72,14 +79,14 @@ class _ProductState extends State<Product> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Container(
+          Container(
             color: Colors.white,
-            padding: const EdgeInsets.only(left: 20, top: 30, right: 20),
+            padding: const EdgeInsets.only(left: 7, top: 30, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -131,9 +138,21 @@ class _ProductState extends State<Product> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 251.47,
-                    width: 174.67,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
+                    width: 175.67,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          width: 0.79,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.25),
+                            spreadRadius: 0,
+                            blurRadius: 4.96,
+                            offset: Offset(2.48, 2.48),
+                          ),
+                        ],
+                        gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           stops: [0.3, 1.0],
@@ -143,7 +162,8 @@ class _ProductState extends State<Product> {
                           ],
                           tileMode: TileMode.mirror,
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(12.39))),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12.39))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -161,7 +181,7 @@ class _ProductState extends State<Product> {
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 12, right: 12, top: 5, bottom: 4),
-                          child: Container(
+                          child: SizedBox(
                               height: 120,
                               width: 152,
                               child: Image.asset(cycleList[index].asset)),
@@ -221,7 +241,22 @@ class _ProductState extends State<Product> {
                                       borderRadius: BorderRadius.circular(4.96),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CycleDetailsScreen(
+                                          asset: cycleList[index].asset!,
+                                          model: cycleList[index].model!.join(),
+                                          price: cycleList[index].price!,
+                                          discrption: cycleList[index]
+                                              .discrption!
+                                              .join(),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -271,7 +306,7 @@ class _ProductState extends State<Product> {
               child: Column(
                 children: [
                   ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: accecoriesList.length,
                     itemBuilder: (context, index) {
@@ -281,6 +316,14 @@ class _ProductState extends State<Product> {
                           height: 130,
                           width: double.infinity,
                           decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                spreadRadius: 0,
+                                blurRadius: 4.96,
+                                offset: Offset(4, 4),
+                              ),
+                            ],
                             gradient: LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -352,33 +395,36 @@ class _ProductState extends State<Product> {
                                 ],
                               ),
                               const Spacer(),
-                               SizedBox(
-                                    height: 28,
-                                    width: 105,
-                                    child: ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    elevation: 10,
-    foregroundColor: const Color.fromRGBO(221, 18, 18, 1),
-    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(4.96),
-    ),
-  ),
-  onPressed: () {},
-  child: Center(
-    child: Text(
-      "Add to cart",
-      style: GoogleFonts.roboto(
-        fontWeight: FontWeight.w600,
-        fontSize: 11,
-        color: const Color.fromRGBO(221, 18, 18, 1),
-      ),
-    ),
-  ),
-  
-),
-
+                              Container(
+                                height: 28,
+                                width: 67,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4.96),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: Center(
+                                    child: Text(
+                                      "Add to cart",
+                                      style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 11,
+                                        color: const Color.fromRGBO(
+                                            221, 18, 18, 1),
+                                      ),
+                                    ),
                                   ),
+                                ),
+                              ),
                               const SizedBox(
                                 width: 30,
                               )

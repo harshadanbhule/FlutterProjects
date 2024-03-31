@@ -40,6 +40,9 @@ flutter:
     - assets/images/product/accecories/jersey.png
     - assets/images/product/accecories/gloves.png
     - assets/images/product/accecories/shoes.png
+    - assets/images/product/Cycle/large/Combatlarge.png
+    - assets/images/product/Cycle/large/santa large.png
+    - assets/images/product/Cycle/large/viperlarge.png
 
   fonts:
     - family: GameOfThrone
