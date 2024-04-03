@@ -43,6 +43,9 @@ flutter:
     - assets/images/product/Cycle/large/Combatlarge.png
     - assets/images/product/Cycle/large/santa large.png
     - assets/images/product/Cycle/large/viperlarge.png
+    - assets/images/inventory/Bicycle - 1280x811.png
+    - assets/images/inventory/favpng_santa-cruz-bicycles-mountain-bike-bicycle-suspension 1.png
+    - assets/images/inventory/pngwing 1.png
 
   fonts:
     - family: GameOfThrone

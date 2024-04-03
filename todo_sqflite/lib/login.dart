@@ -1,6 +1,9 @@
-// ignore_for_file: non_constant_identifier_names
 
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_sqflite/home.dart';
 
 class Login extends StatefulWidget {
@@ -9,7 +12,6 @@ class Login extends StatefulWidget {
   State createState() => _LoginState();
 }
 
-//MODEL CLASS
 class User {
   final String user;
   final String pass;
@@ -23,37 +25,18 @@ class _LoginState extends State<Login> {
     const User(user: "Pranav", pass: "Pranav123"),
     const User(user: "Aditya", pass: "Aditya123"),
   ];
-  //CONTROLLERS - to fetch / access data in TextFields/TextFormFields
+ 
   TextEditingController usenameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  /*
-   KEYS - to uniquely identify widget in the tree 
 
-   - same widgets in same tree and at at same level CANNOT have same key
-   - Key accepts String
-   - When we use key of FORMFIELDSTATE we require as much global keys as much 
-     TextFormFields we have .
-   - When we use key of FORMSTATE we require ONLY ONE global key.
-   - Global key helps use to create instance of aonther class and we can make 
-     use of any method from that class 
-   - here We are using VALIDATE() method from FormState 
-   - FormState's validate () method internally calls to
-     FormFieldState's validate() and uses for loop.
-   - function in validator of TextFormField is called by Flutter engine according 
-    to key     
-  */
-
-  //KEYS
-  // GlobalKey<FormFieldState> usernameKey = GlobalKey<FormFieldState>();
-  // GlobalKey<FormFieldState> passwordKey = GlobalKey<FormFieldState>();
 
   final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
-  //loggedin to direct to next page
+
   bool _loggedin = false;
 
-  //
+  
   bool isPassVisible = false;
   void ShowNextPage() {
     if (_loggedin) {
@@ -69,23 +52,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.elliptical(20, 20),
-            bottomRight: Radius.elliptical(20, 20),
-          ),
-        ),
-        title: const Text(
-          "TaskTracker",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: const Color.fromRGBO(89, 57, 241, 1),
-      ),
+    
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -94,8 +61,9 @@ class _LoginState extends State<Login> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Container(
                   decoration: const BoxDecoration(
@@ -105,7 +73,7 @@ class _LoginState extends State<Login> {
                       BoxShadow(
                         color: Color.fromRGBO(89, 57, 241, 1),
                         offset: Offset(6, 6),
-                        blurRadius: 60,
+                        blurRadius: 40,
                         blurStyle: BlurStyle.normal
                       )
                     ]
@@ -117,66 +85,90 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
-                TextFormField(
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 30
+                  ),
+                  child: Text(
+                      "Login here",
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Color.fromRGBO(89, 57, 241, 1),
+                    ),
+                    ),
+                ),
+               SizedBox(
+                height: 64,
+                width: 357,
+                child: TextFormField(
                   controller: usenameController,
                   cursorColor: const Color.fromRGBO(89, 57, 241, 1),
-
-                  //key: usernameKey,
                   decoration: const InputDecoration(
-                    hintText: "Enter Username",
-                    label: Text(
-                      "Username",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    //FOCUSBORDER
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(89, 57, 241, 1),
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 212, 221, 253),
+                      hintText: "User Name",
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: Color.fromRGBO(89, 57, 241, 1),
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    prefixIcon: Icon(Icons.person),
-                  ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 2,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      )),
                   validator: (value) {
                     //  print("IN USERNAME VALIDATOR");
                     if (value == null || value.isEmpty) {
-                      return "Please enter username";
+                      return "Please enter User Name";
                     } else {
                       return null;
                     }
                   },
                   keyboardType: TextInputType.emailAddress,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 64,
+                width: 357,
+                child: TextFormField(
                   controller: passwordController,
                   obscureText: isPassVisible ? false : true,
                   //key: passwordKey,
                   decoration: InputDecoration(
-                    hintText: "Enter Password",
-                    label: const Text(
-                      "Password",
-                      style: TextStyle(color: Colors.black),
-                    ),
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 212, 221, 253),
+                    hintText: "Password",
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(
+                        width: 2,
                         color: Color.fromRGBO(89, 57, 241, 1),
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    prefixIcon: const Icon(Icons.lock),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
@@ -184,15 +176,15 @@ class _LoginState extends State<Login> {
                         });
                       },
                       child: Icon(
-                        Icons.remove_red_eye_outlined,
+                        size: 20,
+                        CupertinoIcons.eye,
                         color: isPassVisible
                             ? const Color.fromRGBO(89, 57, 241, 1)
-                            : Colors.black,
+                            : const Color.fromARGB(255, 134, 134, 134),
                       ),
                     ),
                   ),
                   validator: (value) {
-                    // print("IN PASSWORD VALIDATOR");
                     if (value == null || value.isEmpty) {
                       return "Please enter Password";
                     } else {
@@ -200,18 +192,23 @@ class _LoginState extends State<Login> {
                     }
                   },
                 ),
+              ),
                 const SizedBox(
                   height: 20,
                 ),
                 SizedBox(
-                  height: 50,
-                  width: 400,
+                 height: 64,
+                width: 357,
                   child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
-                        Color.fromRGBO(89, 57, 241, 1),
-                      ),
+                    style: ElevatedButton.styleFrom(
+                    elevation: 10,
+                    shadowColor: const Color.fromRGBO(203, 214, 255, 1),
+                    foregroundColor: Colors.white,
+                    backgroundColor: const Color.fromRGBO(89, 57, 241, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                  ),
                     onPressed: () {
                       bool loginValidated = _loginKey.currentState!.validate();
                       if (loginValidated &&
@@ -236,19 +233,7 @@ class _LoginState extends State<Login> {
                         );
                       }
 
-                      // bool usernameValidated = usernameKey.currentState!.validate();
-                      // bool passwordValidated = passwordKey.currentState!.validate();
-                      // if(usernameValidated && passwordValidated){
-                      //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     content: Text("Login SuccessFul"),
-                      //   ));
-                      // }else{
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(
-                      //       content: Text("Login Failed !"),
-                      //     ),
-                      //   );
-                      // }
+                     
                     },
                     child: const Text(
                       "Login",
@@ -260,6 +245,94 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                height: 40,
+              ),
+              Text(
+                "Create new account",
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  color: const Color.fromRGBO(73, 73, 73, 1),
+                ),
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              Text(
+                "Or continue with",
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  color: const Color.fromRGBO(89, 57, 241, 1),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      print('Container tapped!');
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 44,
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(236, 236, 236, 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            SvgPicture.asset("assets/images/google.svg"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('Container tapped!');
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 44,
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(236, 236, 236, 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                            "assets/images/facebook.svg"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('Container tapped!');
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 44,
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(236, 236, 236, 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child:
+                            SvgPicture.asset("assets/images/apple.svg"),
+                      ),
+                    ),
+                  ),
+                  const Spacer()
+                ],
+              )
               ],
             ),
           ),

@@ -8,19 +8,18 @@ import 'package:path/path.dart' as path;
 
 dynamic database;
 
-//INSERT
 Future<void> insertCard(ToDoModel obj) async {
   final localDB = await database;
 
   localDB.insert(
-    'Card', //TABLE NAME
-    obj.cardMap(), //TUPLE TO INSERT
+    'Card', 
+    obj.cardMap(), 
     conflictAlgorithm:
-        ConflictAlgorithm.replace, //what to do when conflict arrises
+        ConflictAlgorithm.replace, 
   );
 }
 
-//RETRIEVE
+
 Future<List<ToDoModel>> retriveCard() async {
   final localDB = await database;
   List<Map<String, dynamic>> todomaplist = await localDB.query("Card");
@@ -33,21 +32,21 @@ Future<List<ToDoModel>> retriveCard() async {
   });
 }
 
-//DELETE
+
 Future<void> deleteCard(ToDoModel obj) async {
-  // print("DeleteCard -c_id ${obj.c_id}");
+  
 
   final localDB = await database;
   await localDB.delete(
-    "Card", //Table name
-    where: "c_id=?", //parameter to select a record
+    "Card", 
+    where: "c_id=?", 
     whereArgs: [
       obj.c_id,
-    ], //value of selected parameter to uniquely identify record
+    ], 
   );
 }
 
-//update
+
 Future<void> updateCard(ToDoModel obj) async {
   final localDB = await database;
   await localDB.update(
@@ -58,23 +57,23 @@ Future<void> updateCard(ToDoModel obj) async {
   );
 }
 
-//------------------------------------------------------------------------------
+
 class ToDoModel {
-  // ignore: non_constant_identifier_names
+ 
   int? c_id;
   String title;
   String description;
   String date;
   bool isChecked = false;
-  //constructor
+
   ToDoModel({
-    // ignore: non_constant_identifier_names
+  
     this.c_id,
     required this.title,
     required this.description,
     required this.date,
   });
-  //Map for SQFlite - stores data in key:val pair
+ 
   Map<String, dynamic> cardMap() {
     return {
       'title': title,
@@ -85,13 +84,13 @@ class ToDoModel {
 }
 
 class Advtodo extends StatefulWidget {
-  const Advtodo({super.key});
+  const Advtodo({Key? key}) : super(key: key);
   @override
   State createState() => _AdvtodoState();
 }
 
 class _AdvtodoState extends State<Advtodo> {
-  // Function to Initialize database setup From Start
+
   void dbInit() async {
     database = await openDatabase(
       path.join(await getDatabasesPath(), "TodoDB3.db"),
@@ -120,15 +119,15 @@ class _AdvtodoState extends State<Advtodo> {
 
   List<String> assetPaths = [
     "assets/images/Hexagonal Profile Photo2.png",
-    "assets/images/Hexagonal Profile Photo4.png", // Add more asset paths as needed
+    "assets/images/Hexagonal Profile Photo4.png", 
     "assets/images/Place Image Here.png",
   ];
 
-  //Controllers
+  
   TextEditingController dateController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  //keys
+  
   final _formKey = GlobalKey<FormState>();
 
   List<ToDoModel> todoList = [];
@@ -144,7 +143,7 @@ class _AdvtodoState extends State<Advtodo> {
         dateController.text.trim().isNotEmpty) {
       if (!doedit) {
         setState(() {
-          //   print("In Submitt");
+        
           insertCard(
             ToDoModel(
               title: titleController.text,
@@ -153,25 +152,17 @@ class _AdvtodoState extends State<Advtodo> {
             ),
           );
 
-          // todoList.add(
-          //   ToDoModelClass(
-          //     title: titleController.text.trim(),
-          //     description: descriptionController.text.trim(),
-          //     date: dateController.text.trim(),
-          //   ),
-          // );
+          
         });
       } else {
         await updateCard(ToDoModel(
           c_id: tochangec_id,
-          title: titleController.text, //titleController.text,
+          title: titleController.text, 
           description: descriptionController.text,
           date: dateController.text,
         ));
         setState(() {
-          // toDoModelObj!.date = dateController.text.trim();
-          // toDoModelObj.title = titleController.text.trim();
-          // toDoModelObj.description = descriptionController.text.trim();
+          
         });
       }
       await fillCard();
@@ -181,14 +172,14 @@ class _AdvtodoState extends State<Advtodo> {
     clearController();
   }
 
-  ///TO CLEAR ALL THE TEXT EDITING CONTROLLERS
+  
   void clearController() {
     titleController.clear();
     descriptionController.clear();
     dateController.clear();
   }
 
-  // ignore: non_constant_identifier_names
+  
   int? tochangec_id = -1;
 
   void editTask(ToDoModel toDoModelObj) async {
@@ -215,184 +206,186 @@ class _AdvtodoState extends State<Advtodo> {
         isDismissible: true,
         context: context,
         builder: (context) {
-          return Padding(
-            padding: EdgeInsets.only(
-              left: 20,
-              right: 20,
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Create To-Do",
-                    style: GoogleFonts.quicksand(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22,
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "Title",
-                        style: GoogleFonts.quicksand(
-                          color: const Color.fromRGBO(89, 57, 241, 1),
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
+                    Text(
+                      "Create To-Do",
+                      style: GoogleFonts.quicksand(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 22,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Title",
+                          style: GoogleFonts.quicksand(
+                            color: const Color.fromRGBO(89, 57, 241, 1),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      TextFormField(
-                        controller: titleController,
-                        decoration: InputDecoration(
-                          hintText: "Enter Title",
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(89, 57, 241, 1),
+                        const SizedBox(
+                          height: 3,
+                        ),
+                        TextFormField(
+                          controller: titleController,
+                          decoration: InputDecoration(
+                            hintText: "Enter Title",
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(89, 57, 241, 1),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.red),
-                            borderRadius: BorderRadius.circular(12),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                          "Description",
+                          style: GoogleFonts.quicksand(
+                            color: const Color.fromRGBO(89, 57, 241, 1),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        "Description",
-                        style: GoogleFonts.quicksand(
-                          color: const Color.fromRGBO(89, 57, 241, 1),
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
+                        const SizedBox(
+                          height: 3,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      TextFormField(
-                        controller: descriptionController,
-                        maxLines: 4,
-                        decoration: InputDecoration(
-                          hintText: "Enter Description",
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(89, 57, 241, 1),
+                        TextFormField(
+                          controller: descriptionController,
+                          maxLines: 4,
+                          decoration: InputDecoration(
+                            hintText: "Enter Description",
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(89, 57, 241, 1),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.red),
-                            borderRadius: BorderRadius.circular(12),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                          "Date",
+                          style: GoogleFonts.quicksand(
+                            color: const Color.fromRGBO(89, 57, 241, 1),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        "Date",
-                        style: GoogleFonts.quicksand(
-                          color: const Color.fromRGBO(89, 57, 241, 1),
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
+                        const SizedBox(
+                          height: 3,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      TextFormField(
-                        controller: dateController,
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          hintText: "Enter Date",
-                          suffixIcon: const Icon(Icons.date_range_rounded),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(89, 57, 241, 1),
+                        TextFormField(
+                          controller: dateController,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: "Enter Date",
+                            suffixIcon: const Icon(Icons.date_range_rounded),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(89, 57, 241, 1),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.red),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          onTap: () async {
+                            DateTime? pickeddate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2024),
+                              lastDate: DateTime(2025),
+                            );
+                            String formatedDate =
+                                DateFormat.yMMMd().format(pickeddate!);
+                            setState(() {
+                              dateController.text = formatedDate;
+                            });
+                          },
                         ),
-                        onTap: () async {
-                          DateTime? pickeddate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2024),
-                            lastDate: DateTime(2025),
-                          );
-                          String formatedDate =
-                              DateFormat.yMMMd().format(pickeddate!);
-                          setState(() {
-                            dateController.text = formatedDate;
-                          });
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 300,
+                      decoration:
+                          BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor: const Color.fromRGBO(89, 57, 241, 1),
+                        ),
+                        onPressed: () {
+                          submit(doedit, toDoModelObj);
+            
+                          Navigator.pop(context);
                         },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 300,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        backgroundColor: const Color.fromRGBO(89, 57, 241, 1),
-                      ),
-                      onPressed: () {
-                        submit(doedit, toDoModelObj);
-
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        "Submit",
-                        style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
+                        child: Text(
+                          "Submit",
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -402,6 +395,7 @@ class _AdvtodoState extends State<Advtodo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         width: 420,
         color: const Color.fromRGBO(111, 81, 255, 1),
@@ -475,7 +469,7 @@ class _AdvtodoState extends State<Advtodo> {
                           scrollDirection: Axis.vertical,
                           itemCount: todoList.length,
                           itemBuilder: (context, index) {
-                            //print("Builder = ${todoList.length}");
+                            
                             return Slidable(
                               closeOnScroll: true,
                               endActionPane: ActionPane(
@@ -492,9 +486,9 @@ class _AdvtodoState extends State<Advtodo> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            //updateCard(todoList[index]);
+                                          
                                             editTask(todoList[index]);
-                                            // retc_id(todoList[index]);
+                                       
                                           },
                                           child: Container(
                                             padding: const EdgeInsets.all(10),
@@ -521,9 +515,9 @@ class _AdvtodoState extends State<Advtodo> {
                                             await deleteCard(todoList[index]);
                                             await fillCard();
 
-                                            // print(todoList[index].title);
+                                        
                                             setState(() {});
-                                            //removeTasks(todoList[index]);
+                                        
                                           },
                                           child: Container(
                                             padding: const EdgeInsets.all(5),
@@ -572,82 +566,75 @@ class _AdvtodoState extends State<Advtodo> {
                                     )
                                   ],
                                   borderRadius:
-                                      const BorderRadius.all(Radius.zero),
+                                      const BorderRadius.all(Radius.circular(20)),
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          height: 60,
-                                          width: 60,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color.fromRGBO(
-                                                217, 217, 217, 1),
+                                    Container(
+                                      height: 60,
+                                      width: 60,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(
+                                            217, 217, 217, 1),
+                                      ),
+                                      child: Image.asset(assetPaths[
+                                          index % assetPaths.length]),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            todoList[index].title,
+                                            style: GoogleFonts.inter(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                            ),
                                           ),
-                                          child: Image.asset(assetPaths[
-                                              index % assetPaths.length]),
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        SizedBox(
-                                          width: 260,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                todoList[index].title,
-                                                style: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 15,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                todoList[index].description,
-                                                style: GoogleFonts.inter(
-                                                    color: const Color.fromRGBO(
-                                                        0, 0, 0, 0.7),
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 12),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                todoList[index].date,
-                                                style: GoogleFonts.inter(
-                                                    color: const Color.fromRGBO(
-                                                        0, 0, 0, 0.7),
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 12),
-                                              ),
-                                            ],
+                                          const SizedBox(
+                                            height: 5,
                                           ),
-                                        ),
-                                        Checkbox(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
+                                          Text(
+                                            todoList[index].description,
+                                            style: GoogleFonts.inter(
+                                                color: const Color.fromRGBO(
+                                                    0, 0, 0, 0.7),
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12),
                                           ),
-                                          activeColor: Colors.green,
-                                          value: todoList[index].isChecked,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              todoList[index].isChecked = val!;
-                                            });
-                                          },
-                                        ),
-                                      ],
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            todoList[index].date,
+                                            style: GoogleFonts.inter(
+                                                color: const Color.fromRGBO(
+                                                    0, 0, 0, 0.7),
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Checkbox(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10),
+                                      ),
+                                      activeColor: Colors.green,
+                                      value: todoList[index].isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          todoList[index].isChecked = val!;
+                                        });
+                                      },
                                     ),
                                   ],
                                 ),

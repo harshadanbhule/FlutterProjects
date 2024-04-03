@@ -15,6 +15,7 @@ dependencies:
   sqflite: ^2.3.2
   path: ^1.9.0
   flutter_svg: ^2.0.10+1
+  cupertino_icons: ^1.0.6
 
 dev_dependencies:
   flutter_test:
@@ -24,4 +25,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    [assets/images/Hexagonal Profile Photo2.png,assets/images/Hexagonal Profile Photo4.png,assets/images/Saly-43.png,assets/images/Place Image Here.png,assets/images/astro.svg,assets/images/_0013.png]  
+    [assets/images/Hexagonal Profile Photo2.png,assets/images/Hexagonal Profile Photo4.png,assets/images/Saly-43.png,assets/images/Place Image Here.png,assets/images/astro.svg,assets/images/_0013.png,assets/images/apple.svg,assets/images/facebook.svg,assets/images/google.svg,assets/images/welcome image.svg,assets/images/Union.svg,assets/images/Union2.svg]  
