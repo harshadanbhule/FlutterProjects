@@ -3,53 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_sqflite/home.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+import 'package:todo_sqflite/login.dart';
+
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class User {
-  final String user;
-  final String pass;
-
-  const User({required this.user, required this.pass});
-}
-
-class _LoginState extends State<Login> {
-  List<User> userList = [
-    const User(user: "harshad@gmail.com", pass: "Harshad123"),
-    const User(user: "aditya@gmail.com", pass: "Aditya123"),
-    const User(user: "pranav@gmail.com", pass: "Pranav123"),
-  ];
-
+class _RegisterState extends State<Register> {
   TextEditingController usenameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController ipasswordController = TextEditingController();
 
   final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
   bool _loggedin = false;
   bool isPassVisible = false;
 
-  // ignore: non_constant_identifier_names
-  void ShowNextPage() {
-    if (_loggedin) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Advtodo(),
-        ),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -69,7 +46,7 @@ class _LoginState extends State<Login> {
                 height: 44,
               ),
               Text(
-                "Login here",
+                "Create Account",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
@@ -78,19 +55,19 @@ class _LoginState extends State<Login> {
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Text(
-                "Welcome back you’ve \nbeen missed!",
+                "Create an account so you can explore all the \navailable cycles",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                   color: const Color.fromARGB(255, 0, 0, 0),
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
               SizedBox(
                 height: 64,
@@ -188,22 +165,57 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Forgot your password?",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14,
-                      color: const Color.fromRGBO(89, 57, 241, 1),
+              SizedBox(
+                height: 64,
+                width: 357,
+                child: TextFormField(
+                  controller: ipasswordController,
+                  obscureText: isPassVisible ? false : true,
+                  //key: passwordKey,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromRGBO(241, 244, 255, 1),
+                    hintText: "Confirm Password",
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Color.fromRGBO(89, 57, 241, 1),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isPassVisible = !isPassVisible;
+                        });
+                      },
+                      child: Icon(
+                        size: 20,
+                        CupertinoIcons.eye,
+                        color: isPassVisible
+                            ? const Color.fromRGBO(89, 57, 241, 1)
+                            : const Color.fromARGB(255, 134, 134, 134),
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 30,
-                  )
-                ],
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Password";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ),
               const SizedBox(
                 height: 30,
@@ -222,30 +234,13 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   onPressed: () {
-                    bool loginValidated = _loginKey.currentState!.validate();
-                    if (loginValidated &&
-                        userList.any(
-                          (element) =>
-                              element.user == usenameController.text &&
-                              element.pass == passwordController.text,
-                        )) {
-                      _loggedin = true;
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Login SuccessFul"),
-                        backgroundColor: Colors.green,
-                      ));
-                      ShowNextPage();
-                    } else {
-                      _loggedin = false;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text("Invalid Credentials , Try Again!"),
-                            backgroundColor: Colors.red),
-                      );
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
                   },
                   child: Text(
-                    "Sign in",
+                    "Sign up",
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
@@ -257,12 +252,20 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 40,
               ),
-              Text(
-                "Create new account",
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                  color: const Color.fromRGBO(73, 73, 73, 1),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
+                },
+                child: Text(
+                  "Already have an account",
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: const Color.fromRGBO(73, 73, 73, 1),
+                  ),
                 ),
               ),
               const SizedBox(

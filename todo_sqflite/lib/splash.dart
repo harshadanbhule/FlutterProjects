@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_sqflite/enter.dart';
+import 'package:todo_sqflite/intro.dart';
 
 
 class Splash extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SplashState extends State<Splash> {
     
     super.initState();
     Timer(const Duration(seconds: 5), () { 
-      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const Enter())
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const Intro())
       
     );}
     );

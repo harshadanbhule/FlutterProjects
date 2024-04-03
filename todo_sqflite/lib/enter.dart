@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_sqflite/login.dart';
+import 'package:todo_sqflite/register.dart';
 
 class Enter extends StatefulWidget {
   const Enter({super.key});
@@ -52,7 +53,7 @@ class _EnterState extends State<Enter> {
           const SizedBox(
             height: 90,
           ),
-          Row(
+         Row(
             children: [
               const Spacer(),
               SizedBox(
@@ -75,7 +76,7 @@ class _EnterState extends State<Enter> {
                     ),
                   ),
                   child: Text(
-                    "Next",
+                    "Login",
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
@@ -86,6 +87,34 @@ class _EnterState extends State<Enter> {
               ),
               const SizedBox(
                 width: 30,
+              ),
+              SizedBox(
+                width: 160,
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Register()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+                    backgroundColor:const Color.fromRGBO(255, 255, 255, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    "Register",
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      
+                    ),
+                  ),
+                ),
               ),
               const Spacer()
             ],
