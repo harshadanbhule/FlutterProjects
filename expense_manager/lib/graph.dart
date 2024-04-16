@@ -9,7 +9,7 @@ class Piegraph extends StatefulWidget {
 }
 
 class _PiegraphState extends State {
-  int _total = 2200;
+  final int _total = 2200;
   Map<String, double> data = {
     "Food": 650,
     "Fuel": 600,
@@ -22,8 +22,14 @@ class _PiegraphState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pie-Chart"),
-        centerTitle: true,
+        title: Text("Graphs",
+         style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                        color: Colors.black),
+        ),
+        centerTitle: false
+        ,
       ),
       body: Column(
         children: [

@@ -1,7 +1,7 @@
 import 'package:expense_manager/modelClass.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -18,8 +18,13 @@ class _CategoreyState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GridView"),
-        centerTitle: true,
+        title: Text("Categories",
+         style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                        color: Colors.black),
+        ),
+        centerTitle: false,
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
