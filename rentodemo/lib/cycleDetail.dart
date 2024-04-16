@@ -21,6 +21,7 @@ class CycleDetailsScreen extends StatefulWidget {
   });
 
   @override
+  
   // ignore: library_private_types_in_public_api
   _CycleDetailsScreenState createState() => _CycleDetailsScreenState();
 }
@@ -292,7 +293,50 @@ class _CycleDetailsScreenState extends State<CycleDetailsScreen> {
                             ),
                             Text(
                               widget.discrption,
-                              style: GoogleFonts.barlow(
+                              style: GoogleFonts.barlow
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              (
                                 fontWeight: FontWeight.w300,
                                 fontSize: 12,
                                 color: const Color.fromARGB(255, 0, 0, 0),

@@ -1,0 +1,40 @@
+name: expense_manager
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.6
+  sqflite: ^2.3.2
+  path: ^1.9.0
+  intl: ^0.19.0
+  pie_chart: ^5.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/svg/Group 77.svg
+    - assets/svg/Search_alt.svg
+    - assets/svg/Menu.svg
+    - assets/svg/1.svg
+    - assets/svg/2.svg
+    - assets/svg/3.svg
+    - assets/svg/4.svg
+    - assets/svg/5.svg
+    - assets/about.png
+    - assets/category.png
+    - assets/graph.png
+    - assets/Transaction.png
+    - assets/trash.png

@@ -37,23 +37,23 @@ class _SplashState extends State<Intro> {
               "on.time",
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.bold,
-                fontSize: 50,
+                fontSize: 40,
                 color: Color.fromARGB(228, 255, 255, 255),
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             Text(
               "Make yourself \nmore on time",
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w500,
-                fontSize: 30,
+                fontSize: 20,
                 color: const Color.fromARGB(228, 255, 255, 255),
               ),
             ),
             const SizedBox(
-              height: 80,
+              height: 40,
             ),
             SizedBox(
               width: 200,

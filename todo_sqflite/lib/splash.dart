@@ -4,7 +4,6 @@ import 'dart:async';
 
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_sqflite/enter.dart';
 import 'package:todo_sqflite/intro.dart';
 
 

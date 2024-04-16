@@ -1,0 +1,36 @@
+name: plant
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.6
+  sqflite: ^2.3.2
+  path: ^1.9.0
+  dots_indicator: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/svg/image 2.svg
+    - assets/png/first.png
+    - assets/svg/second.svg
+    - assets/png/second.png
+    - assets/png/third.png
+    - assets/svg/fourth.svg
+    - assets/svg/fifth.svg
+    - assets/svg/six.svg
+    - assets/png/seven.png
+    - assets/png/eight.png
