@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
+import 'package:homeease_main/MainScreen.dart';
 
 import 'package:homeease_main/homepage.dart';
 import 'package:homeease_main/register.dart';
@@ -242,7 +243,7 @@ final TextEditingController _emailTextEditingController =
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const Homepage(),
+                                builder: (context) => MainScreen(),
                               ),
                             );
                           } on FirebaseAuthException catch (error) {

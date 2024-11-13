@@ -20,6 +20,7 @@ dependencies:
   firebase_auth: ^5.3.2
   flutter_onboarding_slider: ^1.0.2 
   smooth_page_indicator: ^1.2.0+3
+  curved_navigation_bar: ^1.0.6 #latest version
 
 dev_dependencies:
   flutter_test:
@@ -54,3 +55,9 @@ flutter:
     - assets/assets/home_page/services/Mask Group_1.png
     - assets/assets/home_page/services/Group 34037.png
     - assets/assets/home_page/services/Mask Group.png
+    - assets/assets/category/clean.png
+    - assets/assets/category/electro.png
+    - assets/assets/category/paint.png
+    - assets/assets/category/plumbing.png
+    - assets/assets/category/saloon.png
+    - assets/assets/category/shiftiing.png

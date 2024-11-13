@@ -1,5 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:homeease_main/categories.dart';
+import 'package:homeease_main/message.dart';
+import 'package:homeease_main/notification.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -8,8 +12,9 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(249, 249, 249, 1),
+    
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+        backgroundColor: Colors.white,
         toolbarHeight: 72,
         leadingWidth: MediaQuery.sizeOf(context).width,
         leading: Expanded(
@@ -80,9 +85,9 @@ class Homepage extends StatelessWidget {
       body: Center(
         child: Expanded(
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                        children: [
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Container(
@@ -118,26 +123,27 @@ class Homepage extends StatelessWidget {
                           width: 312,
                           height: 60,
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 12
-                            ),
+                            padding: const EdgeInsets.only(bottom: 12),
                             child: TextField(
-                                          decoration: InputDecoration(
-                                            suffixIcon: const Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Image(image: AssetImage("assets/assets/home_page/image.png")),
-                                              ],
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide.none,
-                                              borderRadius: BorderRadius.circular(10),
-                                            ),
-                                            fillColor: const Color.fromRGBO(248, 248, 248, 1),
-                                            filled: true,
-                                            hintText: "Search what you need...",
-                                          ),
-                                        ),
+                              decoration: InputDecoration(
+                                suffixIcon: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image(
+                                        image: AssetImage(
+                                            "assets/assets/home_page/image.png")),
+                                  ],
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                fillColor:
+                                    const Color.fromRGBO(248, 248, 248, 1),
+                                filled: true,
+                                hintText: "Search what you need...",
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -145,7 +151,7 @@ class Homepage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               ///
               ///first_scroll
               ///
@@ -203,7 +209,8 @@ class Homepage extends StatelessWidget {
                                     height: 30,
                                     width: 106,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(100),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
                                         color: Colors.white),
                                     child: Row(
                                       children: [
@@ -219,8 +226,8 @@ class Homepage extends StatelessWidget {
                                         const Icon(
                                             Icons.arrow_forward_ios_outlined,
                                             size: 14,
-                                            color:
-                                                Color.fromARGB(255, 67, 208, 126))
+                                            color: Color.fromARGB(
+                                                255, 67, 208, 126))
                                       ],
                                     ),
                                   )
@@ -274,7 +281,8 @@ class Homepage extends StatelessWidget {
                                     height: 30,
                                     width: 106,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(100),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
                                         color: Colors.white),
                                     child: Row(
                                       children: [
@@ -290,8 +298,8 @@ class Homepage extends StatelessWidget {
                                         const Icon(
                                             Icons.arrow_forward_ios_outlined,
                                             size: 14,
-                                            color:
-                                                Color.fromARGB(255, 67, 91, 208))
+                                            color: Color.fromARGB(
+                                                255, 67, 91, 208))
                                       ],
                                     ),
                                   )
@@ -345,7 +353,8 @@ class Homepage extends StatelessWidget {
                                     height: 30,
                                     width: 106,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(100),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
                                         color: Colors.white),
                                     child: Row(
                                       children: [
@@ -361,8 +370,8 @@ class Homepage extends StatelessWidget {
                                         const Icon(
                                             Icons.arrow_forward_ios_outlined,
                                             size: 14,
-                                            color:
-                                                Color.fromARGB(255, 234, 184, 91))
+                                            color: Color.fromARGB(
+                                                255, 234, 184, 91))
                                       ],
                                     ),
                                   )
@@ -376,7 +385,7 @@ class Homepage extends StatelessWidget {
                   ),
                 ),
               ),
-             Padding(
+              Padding(
                   padding: const EdgeInsets.all(10),
                   child: Container(
                       decoration: BoxDecoration(
@@ -400,7 +409,8 @@ class Homepage extends StatelessWidget {
                                     width: 58,
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromRGBO(255, 188, 153, 1)),
+                                        color:
+                                            Color.fromRGBO(255, 188, 153, 1)),
                                     child: Image.asset(
                                         "assets/assets/home_page/services/Group 34246.png"),
                                   ),
@@ -410,8 +420,8 @@ class Homepage extends StatelessWidget {
                                     style: GoogleFonts.interTight(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
-                                        color:
-                                            const Color.fromRGBO(65, 64, 93, 1)),
+                                        color: const Color.fromRGBO(
+                                            65, 64, 93, 1)),
                                   )
                                 ],
                               ),
@@ -427,7 +437,8 @@ class Homepage extends StatelessWidget {
                                     width: 58,
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromRGBO(202, 189, 255, 1)),
+                                        color:
+                                            Color.fromRGBO(202, 189, 255, 1)),
                                     child: Image.asset(
                                         "assets/assets/home_page/services/Group 34257.png"),
                                   ),
@@ -437,8 +448,8 @@ class Homepage extends StatelessWidget {
                                     style: GoogleFonts.interTight(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
-                                        color:
-                                            const Color.fromRGBO(65, 64, 93, 1)),
+                                        color: const Color.fromRGBO(
+                                            65, 64, 93, 1)),
                                   )
                                 ],
                               ),
@@ -454,7 +465,8 @@ class Homepage extends StatelessWidget {
                                     width: 58,
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromRGBO(177, 229, 252, 1)),
+                                        color:
+                                            Color.fromRGBO(177, 229, 252, 1)),
                                     child: Image.asset(
                                         "assets/assets/home_page/services/Group 34258.png"),
                                   ),
@@ -464,8 +476,8 @@ class Homepage extends StatelessWidget {
                                     style: GoogleFonts.interTight(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
-                                        color:
-                                            const Color.fromRGBO(65, 64, 93, 1)),
+                                        color: const Color.fromRGBO(
+                                            65, 64, 93, 1)),
                                   )
                                 ],
                               ),
@@ -476,13 +488,23 @@ class Homepage extends StatelessWidget {
                               width: 61,
                               child: Column(
                                 children: [
-                                  Container(
-                                    height: 58,
-                                    width: 58,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Color.fromRGBO(223, 245, 255, 1)),
-                                    child: const Icon(Icons.arrow_forward_ios_rounded),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return const Categories();
+                                      }));
+                                    },
+                                    child: Container(
+                                      height: 58,
+                                      width: 58,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color:
+                                              Color.fromRGBO(223, 245, 255, 1)),
+                                      child: const Icon(
+                                          Icons.arrow_forward_ios_rounded),
+                                    ),
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
@@ -490,8 +512,8 @@ class Homepage extends StatelessWidget {
                                     style: GoogleFonts.interTight(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
-                                        color:
-                                            const Color.fromRGBO(65, 64, 93, 1)),
+                                        color: const Color.fromRGBO(
+                                            65, 64, 93, 1)),
                                   )
                                 ],
                               ),
@@ -510,40 +532,48 @@ class Homepage extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(10),
                         child: Column(
-                          
                           children: [
                             Row(
                               children: [
                                 Container(
-                                    height: 30,
-                                    width: 6,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromRGBO(202,189,255,1),
-                                      borderRadius: BorderRadius.circular(4)
-                                    ),
+                                  height: 30,
+                                  width: 6,
+                                  decoration: BoxDecoration(
+                                      color: Color.fromRGBO(202, 189, 255, 1),
+                                      borderRadius: BorderRadius.circular(4)),
                                 ),
                                 SizedBox(width: 10),
-                                Text("Cleaning Services",
-                                style: GoogleFonts.interTight(fontWeight: FontWeight.w700,fontSize: 20),),
+                                Text(
+                                  "Cleaning Services",
+                                  style: GoogleFonts.interTight(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20),
+                                ),
                                 SizedBox(width: 80),
                                 Container(
                                   height: 35,
                                   width: 83,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: Color.fromRGBO(239, 239,239, 1),
-                                    border: Border.all(width: 0.5)
-                                  ),
+                                      borderRadius: BorderRadius.circular(100),
+                                      color: Color.fromRGBO(239, 239, 239, 1),
+                                      border: Border.all(width: 0.5)),
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 15),
                                     child: Row(
-                                      
                                       children: [
-                                      
-                                        Text("See All",
-                                        style: GoogleFonts.interTight(fontSize: 12,fontWeight: FontWeight.w600),),
-                                        SizedBox(width: 5,),
-                                        Icon(Icons.arrow_forward_ios_outlined,size: 13,)
+                                        Text(
+                                          "See All",
+                                          style: GoogleFonts.interTight(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                          size: 13,
+                                        )
                                       ],
                                     ),
                                   ),
@@ -560,21 +590,25 @@ class Homepage extends StatelessWidget {
                                   Container(
                                     height: 190,
                                     width: 140,
-                                    
                                     child: Column(
                                       children: [
                                         Container(
-                                          height:140 ,
+                                          height: 140,
                                           width: 154,
-                                          child: Image(image: AssetImage("assets/assets/home_page/services/Mask Group_1.png")),
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/assets/home_page/services/Mask Group_1.png")),
                                         ),
                                         SizedBox(
                                           height: 8,
                                         ),
-                                        Text("Home Cleaning",
-                                        style: GoogleFonts.interTight(fontWeight: FontWeight.w600,fontSize: 15),)
+                                        Text(
+                                          "Home Cleaning",
+                                          style: GoogleFonts.interTight(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        )
                                       ],
-                                    
                                     ),
                                   ),
                                   SizedBox(
@@ -583,23 +617,26 @@ class Homepage extends StatelessWidget {
                                   Container(
                                     height: 190,
                                     width: 140,
-                                    
                                     child: Column(
                                       children: [
                                         Container(
-                                          height:140 ,
+                                          height: 140,
                                           width: 154,
-                                          child: Image(image: AssetImage("assets/assets/home_page/services/Group 34037.png")),
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/assets/home_page/services/Group 34037.png")),
                                         ),
                                         SizedBox(
                                           height: 8,
                                         ),
-                                        Text("Carpet Cleaning",
-                                        style: GoogleFonts.interTight(fontWeight: FontWeight.w600,fontSize: 15),)
+                                        Text(
+                                          "Carpet Cleaning",
+                                          style: GoogleFonts.interTight(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        )
                                       ],
-                                    
                                     ),
-                                    
                                   ),
                                   SizedBox(
                                     width: 10,
@@ -607,23 +644,26 @@ class Homepage extends StatelessWidget {
                                   Container(
                                     height: 190,
                                     width: 140,
-                                    
                                     child: Column(
                                       children: [
                                         Container(
-                                          height:140 ,
+                                          height: 140,
                                           width: 154,
-                                          child: Image(image: AssetImage("assets/assets/home_page/services/Mask Group.png")),
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/assets/home_page/services/Mask Group.png")),
                                         ),
                                         SizedBox(
                                           height: 8,
                                         ),
-                                        Text("AC Cleaning",
-                                        style: GoogleFonts.interTight(fontWeight: FontWeight.w600,fontSize: 15),)
+                                        Text(
+                                          "AC Cleaning",
+                                          style: GoogleFonts.interTight(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        )
                                       ],
-                                    
                                     ),
-                                    
                                   )
                                 ],
                               ),
@@ -631,9 +671,9 @@ class Homepage extends StatelessWidget {
                           ],
                         ),
                       )))
-                        ],
-                      ),
-            )),
+            ],
+          ),
+        )),
       ),
     );
   }

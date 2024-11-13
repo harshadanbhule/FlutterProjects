@@ -9,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:homeease_main/login.dart';
 import 'package:homeease_main/widget/snackbar.dart';
 
-import 'package:provider/provider.dart';
 
 
 

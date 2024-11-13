@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homeease_main/homepage.dart';
 import 'package:homeease_main/login.dart';
 import 'package:homeease_main/on_1.dart';
 import 'package:homeease_main/on_2.dart';

@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 
 // ignore: depend_on_referenced_packages
-import 'package:google_fonts/google_fonts.dart';
 import 'package:homeease_main/onboarding_screen.dart';
 
 
